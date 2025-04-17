@@ -119,13 +119,13 @@ public class HtmlTopicExtractor {
             out.println("<html>");
             out.println("<head>");
             out.println("<meta charset='utf8'>");
-            out.print("<title>");
+            /*out.print("<title>");
             out.printf(
                 "Topic %d - %s",
                 topic.getLocalContextId(),
                 document.getOriginalName()
             );
-            out.println("</title>");
+            out.println("</title>");*/
             out.println("</head>");
             out.println("<body><pre>");
             for (HelpTopicLine line : topic.getText()) {

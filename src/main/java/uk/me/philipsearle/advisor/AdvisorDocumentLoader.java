@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import uk.me.philipsearle.advisor.HelpTopicLine.TextAttributes;
 
 public class AdvisorDocumentLoader {
 
@@ -197,12 +199,20 @@ public class AdvisorDocumentLoader {
 
         List<HelpTopic> topics = new ArrayList<>();
         for (int i = 0; i < compressedTopics.size(); i++) {
-            topics.add(
-                new HelpTopic(
-                    i + 32768,
-                    extractTopicText(decompress(compressedTopics.get(i)))
+            List<HelpTopicLine> topic = extractTopicText(
+                decompress(compressedTopics.get(i))
+            );
+            topic.set(
+                0,
+                new HelpTopicLine(
+                    topic.get(0).getText().replace(":n", "<title>") +
+                    "</title>" +
+                    topic.get(0).getText().replace(":n", "<b>") +
+                    "</b>",
+                    topic.get(0).getAttributes()
                 )
             );
+            topics.add(new HelpTopic(i + 32768, topic));
         }
         return topics;
     }
