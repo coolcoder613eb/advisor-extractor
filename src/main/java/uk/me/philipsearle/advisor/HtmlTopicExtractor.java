@@ -126,6 +126,9 @@ public class HtmlTopicExtractor {
                 document.getOriginalName()
             );
             out.println("</title>");*/
+            out.println(
+                "<script>window.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('a[href=\"#!B\"]').forEach(a => a.href = document.referrer);});</script>"
+            );
             out.println("</head>");
             out.println("<body><pre>");
             for (HelpTopicLine line : topic.getText()) {
